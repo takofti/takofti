@@ -48,7 +48,7 @@ async function updateDiscordStatus() {
             document.getElementById("activity-image").style.display = "none";
         }
     } else {
-        document.getElementById("discord-activity").innerHTML = "Не в сети / нет активности";
+        document.getElementById("discord-activity").innerHTML = "No activities";
         document.getElementById("activity-image").style.display = "none";
     }
 }
