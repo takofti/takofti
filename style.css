@@ -1,0 +1,489 @@
+* {
+    box-sizing: border-box;
+    cursor: url(content/image/cursor.png) 16 16, auto !important;
+}
+
+a {
+  color: rgb(255, 255, 255);
+}
+
+body {
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+img {
+    pointer-events: none;
+}
+
+body {
+    margin: 0;
+    font-family: 'Afacad', sans-serif;
+    overflow: hidden; /* сами секции скроллятся вручную через JS, обычный скролл не нужен */
+    height: 100vh;
+}
+
+#bg-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* общий контейнер — всё стоит во flex-потоке,
+   поэтому ничего не наезжает друг на друга при изменении контента */
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 60px 20px 40px;
+    text-align: center;
+}
+
+/* обёртка на весь экран, внутри которой едут два раздела */
+.sections-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* каждый раздел занимает весь экран и двигается через transform,
+   а не через opacity — поэтому это реальный "заезд", а не проявление */
+.section {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.section-main {
+    transform: translateY(0);
+}
+
+/* второй раздел изначально спрятан целиком ниже экрана */
+.section-second {
+    transform: translateY(100%);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* когда активен второй раздел — первый уезжает наверх, второй заезжает на своё место */
+.sections-wrapper.active-second .section-main {
+    transform: translateY(-100%);
+}
+
+.sections-wrapper.active-second .section-second {
+    transform: translateY(0);
+}
+
+.second-content h2 {
+    font-size: 34px;
+    margin: 0 0 12px;
+    text-shadow: 0 0 5px white;
+}
+
+.second-content p {
+    font-size: 18px;
+    opacity: 0.85;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* кнопка-стрелка в правом нижнем углу — переключает разделы,
+   стрелка разворачивается на 180° когда открыт второй раздел */
+.section-toggle {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 10;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    cursor: url(content/image/cursor.png) 16 16, pointer !important;
+    transition: transform 0.4s ease, background 0.2s ease;
+}
+
+.section-toggle:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.section-toggle.rotated svg {
+    transform: rotate(180deg);
+}
+
+.section-toggle svg {
+    transition: transform 0.4s ease;
+}
+
+/* счётчик просмотров — левый нижний угол, белый текст со свечением */
+.views-counter {
+    position: fixed;
+    left: 15px;
+    bottom: 12px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #ffffff;
+    font-family: 'Afacad', sans-serif;
+    font-weight: 550;
+    font-size: 14px;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+.views-counter svg {
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.7));
+}
+
+.avatar {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.takofti {
+    color: white;
+    font-weight: 600;
+    font-size: 50px;
+    text-shadow: 0 0 5px white;
+    margin: 0;
+}
+
+/* ник и бейдж сервера стоят в одном flex-ряду —
+   поэтому бейдж всегда прилипает к нику, и его положение
+   не нужно высчитывать в зависимости от длины текста */
+.username-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.server-badge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 26px;
+    padding: 0 8px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
+}
+
+.server-icon-tag {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.badge-text {
+    color: white;
+    font-size: 12px;
+    line-height: 1;
+}
+
+.description {
+    color: white;
+    font-weight: 500;
+    font-size: 25px;
+    margin: 0;
+    position: relative;
+    top: -20px;
+}
+
+.info-row {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.Location,
+.birthday {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.Location { font-size: 18px; position: relative; top: -20px;}
+.birthday { font-size: 20px; position: relative; top: -20px;}
+
+.birthday svg,
+.Location svg {
+    filter: drop-shadow(0 0 1px white) drop-shadow(0 0 10px white);
+}
+
+/* квадрат теперь растягивается под содержимое (аватар дискорда,
+   текст активности и картинка активности), а не фиксированного размера */
+.square {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: fit-content;
+    min-width: 320px;
+    max-width: 100%;
+    padding: 10px 30px;
+    border-radius: 24px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    top: -20px;
+    backdrop-filter: blur(2px);
+}
+
+.discord-main {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+}
+
+.discord-avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+    left: -10px;
+}
+
+.discord-avatar {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+/* кружок статуса — теперь картинка, прижата к правому нижнему краю аватара */
+.status-indicator {
+    position: absolute;
+    right: -2px;
+    bottom: -2px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #2b2b30;
+    border: 3px solid #2b2b30;
+}
+
+.discord-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    min-width: 0;
+    gap: 4px;
+}
+
+/* ник дискорда и бейдж стоят в одном ряду — бейдж едет вместе с ником
+   при любой длине текста, без хардкода координат */
+.discord-username-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.discord-username {
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.discord-activity {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.playing-label {
+    color: white;
+    opacity: 0.95;
+    font-weight: 600;
+}
+
+.activity-details{
+    display: block;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+}
+.activity-state {
+    display: block;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    position: relative;
+    top: -25px;
+}
+
+/* рамка под картинку активности (обложка игры/трека) — теперь маленькая, справа от текста */
+.activity-image {
+    display: none; /* показывается через JS, когда есть картинка */
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    margin-left: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+    position: relative;
+    right: -10px;
+}
+
+.socials {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    top: -20px;
+}
+
+.youtube,
+.discord,
+.tiktok {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Youtube,
+.Discord,
+.Tiktok {
+    filter: drop-shadow(0 0 1px white) drop-shadow(0 0 5px white);
+    width: 36px;
+    height: 36px;
+    color: white;
+}
+
+.Youtube:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+.Discord:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+.Tiktok:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+/* плеер музыки — квадрат расширяется при наведении, открывая ползунок внутри себя */
+.music-player {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+    transition: width 0.3s ease, background 0.2s ease;
+}
+
+.music-player:hover,
+.music-player:focus-within {
+    width: 190px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.music-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: url(content/image/cursor.png) 16 16, pointer !important;
+}
+
+.volume-icon {
+    pointer-events: none;
+}
+
+/* ползунок спрятан, пока квадрат не расширился — появляется чуть позже самого расширения */
+.volume-slider-wrap {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    padding-right: 14px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.music-player:hover .volume-slider-wrap,
+.music-player:focus-within .volume-slider-wrap {
+    opacity: 1;
+    transition: opacity 0.25s ease 0.1s;
+}
+
+.volume-slider {
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    background: linear-gradient(to right, #ffffff 50%, rgba(255, 255, 255, 0.25) 50%);
+    cursor: url(content/image/cursor.png) 16 16, pointer !important;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    cursor: url(content/image/cursor.png) 16 16, pointer !important;
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border: none;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    cursor: url(content/image/cursor.png) 16 16, pointer !important;
+}
+
+.volume-slider::-moz-range-track {
+    height: 4px;
+    border-radius: 2px;
+    background: transparent;
+}
+
+@media (max-width: 480px) {
+    .takofti { font-size: 40px; }
+    .description { font-size: 20px; }
+    .square { padding: 20px; }
+}
