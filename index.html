@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>takofti</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <video autoplay muted loop id="bg-video">
+        <source src="Backgraund.mp4" type="video/mp4">
+    </video>
+
+    <div class="sections-wrapper" id="sections-wrapper">
+
+        <section class="section section-main" id="section-main">
+            <div class="profile-card">
+
+                <img src="avatar.jpg" class="avatar" alt="avatar">
+
+                <div class="username-row">
+                    <h1 class="takofti">takofti</h1>
+                </div>
+
+                <h3 class="description">Come to the fun and awesome Jolilab server</h3>
+
+                <div class="info-row">
+                    <span class="Location">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="4 2 16 20"><path fill="currentColor" d="M12 12q.825 0 1.413-.587T14 10t-.587-1.412T12 8t-1.412.588T10 10t.588 1.413T12 12m0 10q-4.025-3.425-6.012-6.362T4 10.2q0-3.75 2.413-5.975T12 2t5.588 2.225T20 10.2q0 2.5-1.987 5.438T12 22"></path></svg>
+                        Kiev
+                    </span>
+                    <span class="birthday">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 6c1.11 0 2-.9 2-2 0-.38-.1-.73-.29-1.03L12 0l-1.71 2.97c-.19.3-.29.65-.29 1.03 0 1.1.9 2 2 2zm4.6 9.99l-1.07-1.07-1.08 1.07c-1.3 1.3-3.58 1.31-4.89 0l-1.07-1.07-1.09 1.07C6.75 16.64 5.88 17 4.96 17c-.73 0-1.4-.23-1.96-.61V21c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-4.61c-.56.38-1.23.61-1.96.61-.92 0-1.79-.36-2.44-1.01zM18 9h-5V7h-2v2H6c-1.66 0-3 1.34-3 3v1.54c0 1.08.88 1.96 1.96 1.96.52 0 1.02-.2 1.38-.57l2.14-2.13 2.13 2.13c.74.74 2.03.74 2.77 0l2.14-2.13 2.13 2.13c.37.37.86.57 1.38.57 1.08 0 1.96-.88 1.96-1.96V12C21 10.34 19.66 9 18 9z"/></svg>
+                        25 june 14 year
+                    </span>
+                </div>
+
+                <div class="square" id="discord-status">
+                    <div class="discord-main">
+                        <div class="discord-avatar-wrap">
+                            <img id="discord-avatar" class="discord-avatar" src="" alt="avatar">
+                            <img id="status-indicator" class="status-indicator" src="status/offline.webp" alt="status">
+                        </div>
+                        <div class="discord-info">
+                            <div class="discord-username-row">
+                                <span id="discord-username" class="discord-username"></span>
+                                <span class="server-badge">
+                                    <img src="server-icon-tag.png" class="server-icon-tag" alt="badge">
+                                    <span class="badge-text">ʚɞ</span>
+                                </span>
+                            </div>
+                            <span id="discord-activity" class="discord-activity">Загрузка...</span>
+                        </div>
+                        <img id="activity-image" class="activity-image" src="" alt="activity">
+                    </div>
+                </div>
+
+                <div class="socials">
+                    <a class="youtube" target="_blank" href="https://youtube.com/@takofti">
+                        <svg class="Youtube" xmlns="http://www.w3.org/2000/svg" viewBox="1.99 5 20.01 14.01">
+                            <path fill="currentColor" d="M21.593 7.203a2.506 2.506 0 0 0-1.762-1.766C18.265 5.007 12 5 12 5s-6.264-.007-7.831.404a2.56 2.56 0 0 0-1.766 1.778c-.413 1.566-.417 4.814-.417 4.814s-.004 3.264.406 4.814c.23.857.905 1.534 1.763 1.765c1.582.43 7.83.437 7.83.437s6.265.007 7.831-.403a2.515 2.515 0 0 0 1.767-1.763c.414-1.565.417-4.812.417-4.812s.02-3.265-.407-4.831zM9.996 15.005l.005-6l5.207 3.005l-5.212 2.995z"/>
+                        </svg>
+                    </a>
+                    <a class="discord" target="_blank" href="https://discord.gg/gQgZBq9MT5">
+                        <svg class="Discord" xmlns="http://www.w3.org/2000/svg" viewBox="1.99 5 20.01 14.01">
+                            <path fill="currentColor" d="M14.82 4.26a10.14 10.14 0 0 0-.53 1.1a14.66 14.66 0 0 0-4.58 0a10.14 10.14 0 0 0-.53-1.1a16 16 0 0 0-4.13 1.3a17.33 17.33 0 0 0-3 11.59a16.6 16.6 0 0 0 5.07 2.59A12.89 12.89 0 0 0 8.23 18a9.65 9.65 0 0 1-1.71-.83a3.39 3.39 0 0 0 .42-.33a11.66 11.66 0 0 0 10.12 0q.21.18.42.33a10.84 10.84 0 0 1-1.71.84a12.41 12.41 0 0 0 1.08 1.78a16.44 16.44 0 0 0 5.06-2.59a17.22 17.22 0 0 0-3-11.59a16.09 16.09 0 0 0-4.09-1.35zM8.68 14.81a1.94 1.94 0 0 1-1.8-2a1.93 1.93 0 0 1 1.8-2a1.93 1.93 0 0 1 1.8 2a1.93 1.93 0 0 1-1.8 2zm6.64 0a1.94 1.94 0 0 1-1.8-2a1.93 1.93 0 0 1 1.8-2a1.92 1.92 0 0 1 1.8 2a1.92 1.92 0 0 1-1.8 2z"></path>
+                        </svg>
+                    </a>
+                    <a class="tiktok" target="_blank" href="https://www.tiktok.com/@hikofti">
+                        <svg class="Tiktok" xmlns="http://www.w3.org/2000/svg" viewBox="1.99 5 20.01 14.01">
+                            <path fill="currentColor" d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74a2.89 2.89 0 0 1 2.31-4.64a2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"></path>
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section section-second" id="section-second">
+            <div class="second-content">
+                <h2>Второй раздел</h2>
+                <p>Здесь пока ничего нет</p>
+            </div>
+        </section>
+
+    </div>
+
+    <button id="section-toggle" class="section-toggle" aria-label="Открыть следующий раздел">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22">
+            <path fill="currentColor" d="M12 16.5 4.5 9l1.41-1.41L12 13.67l6.09-6.08L19.5 9z"></path>
+        </svg>
+    </button>
+
+    <div class="views-counter">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"></path>
+        </svg>
+        <span id="views-count">...</span>
+    </div>
+
+    <div class="music-player">
+        <button id="music-toggle" class="music-toggle" aria-label="Выключить звук">
+            <svg id="icon-volume-on" class="volume-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                <path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3z"></path>
+                <path fill="currentColor" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03z"></path>
+                <path fill="currentColor" d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path>
+            </svg>
+            <svg id="icon-volume-off" class="volume-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" style="display:none">
+                <path fill="currentColor" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63z"></path>
+                <path fill="currentColor" d="M19 12c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71z"></path>
+                <path fill="currentColor" d="M4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4l-1.88 1.88L12 7.76V4z"></path>
+            </svg>
+        </button>
+        <div class="volume-slider-wrap">
+            <input type="range" id="volume-slider" class="volume-slider" min="0" max="100" step="1" value="50">
+        </div>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
