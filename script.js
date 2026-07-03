@@ -90,9 +90,13 @@ function tryAutoplay() {
                 music.play().catch((e) => console.error("Не удалось запустить музыку:", e));
                 document.removeEventListener("click", startOnInteract);
                 document.removeEventListener("touchstart", startOnInteract);
+                document.removeEventListener("touchend", startOnInteract);
+                document.removeEventListener("pointerdown", startOnInteract);
             };
             document.addEventListener("click", startOnInteract, { once: true });
             document.addEventListener("touchstart", startOnInteract, { once: true });
+            document.addEventListener("touchend", startOnInteract, { once: true });
+            document.addEventListener("pointerdown", startOnInteract, { once: true });
         });
     }
 }
